@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sannidhya Roy Sadhya</title>
+<meta name="description" content="Sannidhya Roy Sadhya — Electrical and Electronic Engineering undergraduate at BRAC University, working on robotics, embedded systems, and bionics.">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a100d'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='18' fill='%23f2a154' text-anchor='middle'%3ESR%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg:#0a100d;
+    --bg-elevated:#0e1512;
+    --text:#e9efe9;
+    --text-dim:#8a9b90;
+    --text-dimmer:#5c6c62;
+    --accent:#f2a154;
+    --accent-soft:rgba(242,161,84,0.14);
+    --line:#1c2621;
+    --trace:#2c3a32;
+    --radius:3px;
+    --maxw:700px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:600;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+
+  a{color:inherit;}
+
+  .mono{
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.78rem;
+    letter-spacing:0.01em;
+  }
+
+  /* ---------- layout shell ---------- */
+  .wrap{
+    max-width:var(--maxw);
+    margin:0 auto;
+    padding:0 28px;
+  }
+
+  /* ---------- nav ---------- */
+  nav{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:rgba(10,16,13,0.86);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    height:56px;
+  }
+  .nav-name{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:600;
+    font-size:0.95rem;
+    text-decoration:none;
+  }
+  .nav-links{
+    display:flex;
+    gap:22px;
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  .nav-links a{
+    text-decoration:none;
+    color:var(--text-dim);
+    font-size:0.88rem;
+    transition:color .15s ease;
+  }
+  .nav-links a:hover{color:var(--accent);}
+  .nav-toggle{display:none;}
+
+  @media (max-width:640px){
+    .nav-links{
+      position:fixed;
+      top:56px; left:0; right:0;
+      background:var(--bg-elevated);
+      border-bottom:1px solid var(--line);
+      flex-direction:column;
+      gap:0;
+      padding:8px 0;
+      display:none;
+    }
+    .nav-links.open{display:flex;}
+    .nav-links a{
+      padding:12px 28px;
+      display:block;
+      border-top:1px solid var(--line);
+    }
+    .nav-toggle{
+      display:block;
+      background:none;
+      border:1px solid var(--line);
+      color:var(--text);
+      width:34px; height:34px;
+      border-radius:var(--radius);
+      font-family:'JetBrains Mono',monospace;
+      font-size:0.9rem;
+      cursor:pointer;
+    }
+  }
+
+  /* ---------- hero ---------- */
+  header.hero{
+    padding:88px 0 64px;
+    border-bottom:1px solid var(--line);
+  }
+  .status-tag{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:5px 11px;
+    border:1px solid var(--trace);
+    border-radius:100px;
+    color:var(--text-dim);
+    margin-bottom:28px;
+  }
+  .led{
+    width:7px; height:7px;
+    border-radius:50%;
+    background:var(--accent);
+    box-shadow:0 0 6px 1px var(--accent-soft);
+    animation:pulse 2.6s ease-in-out infinite;
+    flex-shrink:0;
+  }
+  @keyframes pulse{
+    0%,100%{opacity:1;}
+    50%{opacity:0.35;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .led{animation:none;}
+  }
+
+  h1.name{
+    font-size:clamp(2.1rem, 5.5vw, 3.1rem);
+    line-height:1.08;
+  }
+  .tagline{
+    color:var(--text-dim);
+    font-size:1.08rem;
+    margin-top:14px;
+    max-width:46ch;
+  }
+  .hero-meta{
+    display:flex;
+    flex-wrap:wrap;
+    gap:18px;
+    margin-top:32px;
+  }
+  .hero-meta a{
+    text-decoration:none;
+    color:var(--text);
+    font-size:0.88rem;
+    border-bottom:1px solid var(--trace);
+    padding-bottom:2px;
+    transition:border-color .15s ease, color .15s ease;
+  }
+  .hero-meta a:hover{color:var(--accent); border-color:var(--accent);}
+  .hero-meta span.sep{color:var(--text-dimmer);}
+
+  /* ---------- sections ---------- */
+  section{
+    padding:56px 0;
+    border-bottom:1px solid var(--line);
+  }
+  section:last-of-type{border-bottom:none;}
+
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:32px;
+  }
+  .section-head .tick{
+    width:20px; height:1px;
+    background:var(--accent);
+    flex-shrink:0;
+  }
+  .section-head h2{font-size:1.35rem;}
+
+  p{color:var(--text-dim); margin:0 0 14px;}
+  p:last-child{margin-bottom:0;}
+
+  /* ---------- timeline (experience / extracurriculars) ---------- */
+  .timeline{
+    position:relative;
+    padding-left:22px;
+  }
+  .timeline::before{
+    content:'';
+    position:absolute;
+    left:4px; top:6px; bottom:6px;
+    width:1px;
+    background:var(--trace);
+  }
+  .role{
+    position:relative;
+    padding-bottom:30px;
+  }
+  .role:last-child{padding-bottom:0;}
+  .role::before{
+    content:'';
+    position:absolute;
+    left:-22px; top:6px;
+    width:9px; height:9px;
+    border-radius:50%;
+    background:var(--bg);
+    border:1px solid var(--accent);
+  }
+  .role-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    flex-wrap:wrap;
+    gap:6px 16px;
+  }
+  .role-title{
+    font-weight:600;
+    font-size:1rem;
+    color:var(--text);
+  }
+  .role-org{color:var(--text-dim); font-size:0.94rem;}
+  .role-date{
+    color:var(--text-dimmer);
+    white-space:nowrap;
+  }
+  .role-desc{
+    margin-top:8px;
+    font-size:0.94rem;
+  }
+  .role-prev{
+    margin-top:6px;
+    font-size:0.82rem;
+    color:var(--text-dimmer);
+  }
+
+  /* ---------- projects empty state ---------- */
+  .empty-state{
+    border:1px dashed var(--trace);
+    border-radius:var(--radius);
+    padding:32px 26px;
+  }
+  .empty-state .mono{
+    color:var(--accent);
+    display:block;
+    margin-bottom:10px;
+  }
+  .empty-state a{
+    color:var(--accent);
+    text-decoration:none;
+    border-bottom:1px solid var(--accent-soft);
+  }
+  .empty-state a:hover{border-color:var(--accent);}
+
+  /* ---------- skills ---------- */
+  .skill-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:28px 32px;
+  }
+  @media (max-width:520px){.skill-grid{grid-template-columns:1fr;}}
+  .skill-group h3{
+    font-size:0.82rem;
+    font-weight:500;
+    color:var(--text-dimmer);
+    margin-bottom:10px;
+    font-family:'Inter',sans-serif;
+  }
+  .skill-group ul{
+    list-style:none;
+    margin:0; padding:0;
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .skill-group li{
+    font-size:0.86rem;
+    color:var(--text);
+    border:1px solid var(--line);
+    padding:5px 11px;
+    border-radius:var(--radius);
+  }
+
+  /* ---------- awards / education ---------- */
+  .list-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    gap:16px;
+    padding:13px 0;
+    border-top:1px solid var(--line);
+  }
+  .list-row:first-child{border-top:none;}
+  .list-row-title{font-size:0.95rem; color:var(--text);}
+  .list-row-sub{font-size:0.84rem; color:var(--text-dim); margin-top:2px;}
+  .list-row-date{color:var(--text-dimmer); white-space:nowrap; flex-shrink:0;}
+
+  /* ---------- contact ---------- */
+  .contact-links{
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+    margin-top:24px;
+  }
+  .contact-links a{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    text-decoration:none;
+    padding:14px 0;
+    border-top:1px solid var(--line);
+    color:var(--text);
+    font-size:0.98rem;
+    transition:color .15s ease;
+  }
+  .contact-links a:last-child{border-bottom:1px solid var(--line);}
+  .contact-links a:hover{color:var(--accent);}
+  .contact-links a:hover .arrow{transform:translateX(3px); color:var(--accent);}
+  .arrow{color:var(--text-dimmer); transition:transform .15s ease, color .15s ease;}
+
+  .resume-btn{
+    display:inline-block;
+    margin-top:28px;
+    padding:11px 20px;
+    border:1px solid var(--accent);
+    color:var(--accent);
+    text-decoration:none;
+    border-radius:var(--radius);
+    font-size:0.9rem;
+    transition:background .15s ease, color .15s ease;
+  }
+  .resume-btn:hover{background:var(--accent); color:var(--bg);}
+
+  footer{
+    padding:36px 0 56px;
+  }
+  footer p{
+    font-size:0.8rem;
+    color:var(--text-dimmer);
+    margin:0;
+  }
+
+  ::selection{background:var(--accent-soft); color:var(--accent);}
+  a:focus-visible, button:focus-visible{
+    outline:1px solid var(--accent);
+    outline-offset:2px;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="#top" class="nav-name">Sannidhya Roy Sadhya</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#extracurriculars">Extracurriculars</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="status-tag mono">
+      <span class="led"></span>
+      Open to robotics &amp; embedded systems work
+    </div>
+    <h1 class="name">Sannidhya Roy Sadhya</h1>
+    <p class="tagline">Electrical &amp; Electronic Engineering undergraduate at BRAC University, building toward robotics, bionics, and embedded systems.</p>
+    <div class="hero-meta">
+      <a href="mailto:sannidhya.sadhya@computer.org">Email</a>
+      <a href="https://github.com/Sadhya555" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://linkedin.com/in/sannidhya-roy-sadhya" target="_blank" rel="noopener">LinkedIn</a>
+      <span class="sep">Dhaka, Bangladesh</span>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <section id="about">
+    <div class="wrap">
+      <div class="section-head"><span class="tick"></span><h2>About</h2></div>
+      <p>I'm a third-year EEE student at BRAC University, currently exploring robotics, biomedical engineering, and neurotechnology through coursework, competitions, and independent builds. I'm part of my university's rover team competing at the University Rover Challenge, and I spend a good amount of time outside class trying to get better at designing and debugging hardware and firmware on my own rather than leaning on borrowed code.</p>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="wrap">
+      <div class="section-head"><span class="tick"></span><h2>Experience</h2></div>
+      <div class="timeline">
+        <div class="role">
+          <div class="role-top">
+            <div>
+              <div class="role-title">Controls &amp; Software Contributor</div>
+              <div class="role-org">BRACU Mongol-Tori</div>
+            </div>
+            <div class="role-date mono">Jul 2025 — Present</div>
+          </div>
+          <p class="role-desc">Developing a custom ROS 2 Humble teleoperation package in Python, mapping raw gamepad signals to base and multi-DOF arm movement for the university's rover.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="wrap">
+      <div class="section-head"><span class="tick"></span><h2>Projects</h2></div>
+      <div class="empty-state">
+        <span class="mono">Nothing published here yet</span>
+        <p>I'm currently building out embedded systems and robotics projects to feature on this page — check back soon. In the meantime, ongoing work lives on <a href="https://github.com/Sadhya555" target="_blank" rel="noopener">my GitHub</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="extracurriculars">
+    <div class="wrap">
+      <div class="section-head"><span class="tick"></span><h2>Extracurriculars</h2></div>
+      <div class="timeline">
+
+        <div class="role">
+          <div class="role-top">
+            <div>
+              <div class="role-title">Treasurer</div>
+              <div class="role-org">IEEE Computer Society, BRACU SBC</div>
+            </div>
+            <div class="role-date mono">Jan 2026 — Present</div>
+          </div>
+        </div>
+
+        <div class="role">
+          <div class="role-top">
+            <div>
+              <div class="role-title">Secretary, Web &amp; IT Committee</div>
+              <div class="role-org">IEEE Computer Society, Bangladesh Chapter</div>
+            </div>
+            <div class="role-date mono">Mar 2026 — Present</div>
+          </div>
+        </div>
+
+        <div class="role">
+          <div class="role-top">
+            <div>
+              <div class="role-title">IT Assistant Director</div>
+              <div class="role-org">Robotics Club of BRAC University</div>
+            </div>
+            <div class="role-date mono">Apr 2026 — Present</div>
+          </div>
+          <p class="role-desc">Learning Arduino and ESP32 fundamentals while collaborating on the club's digital design output.</p>
+          <div class="role-prev">Previously: IT Apprentice (Aug 2025 – Apr 2026), IT General Member (Dec 2024 – Aug 2025)</div>
+        </div>
+
+        <div class="role">
+          <div class="role-top">
+            <div>
+              <div class="role-title">Creative &amp; Promotion Director</div>
+              <div class="role-org">BRAC University Health &amp; Safety Club</div>
+            </div>
+            <div class="role-date mono">Aug 2026 — Present</div>
+          </div>
+          <p class="role-desc">Designing booklets and creative content to promote health and safety awareness across the university.</p>
+          <div class="role-prev">Previously: Co-Director (Nov 2025 – Aug 2026), Executive (Feb – Nov 2025), General Member (Nov 2024 – Feb 2025)</div>
+        </div>
+
+        <div class="role">
+          <div class="role-top">
+            <div>
+              <div class="role-title">Senior Executive, Logistics</div>
+              <div class="role-org">BRAC University Electrical and Electronic Club</div>
+            </div>
+            <div class="role-date mono">Mar 2026 — Present</div>
+          </div>
+          <p class="role-desc">Coordinated ordering, transport, and packaging for 110 gifts at a BRACU EEE Alumni Association event.</p>
+          <div class="role-prev">Previously: General Member, Logistics (Nov 2024 – Mar 2026)</div>
+        </div>
+
+        <div class="role">
+          <div class="role-top">
+            <div>
+              <div class="role-title">Outreach Team Member</div>
+              <div class="role-org">BRACU RaptorX</div>
+            </div>
+            <div class="role-date mono">Nov 2024 — May 2025</div>
+          </div>
+          <p class="role-desc">Took part in the University Innovation Hub Program, a startup accelerator, helping secure 30,000 BDT in funding for unmanned aerial systems development.</p>
+        </div>
+
+        <div class="role">
+          <div class="role-top">
+            <div>
+              <div class="role-title">President</div>
+              <div class="role-org">Mathematics Club, Anandaniketan School</div>
+            </div>
+            <div class="role-date mono">Sep 2022 — May 2023</div>
+          </div>
+          <p class="role-desc">Founded the club and delivered talks to 250+ students over the year to build interest in mathematics.</p>
+        </div>
+
+        <div class="role">
+          <div class="role-top">
+            <div>
+              <div class="role-title">Senior Member</div>
+              <div class="role-org">Aqua House, Anandaniketan School</div>
+            </div>
+            <div class="role-date mono">Sep 2021 — May 2023</div>
+          </div>
+          <p class="role-desc">Coordinated team activities, including leading 30 students volunteering at a local orphanage.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="wrap">
+      <div class="section-head"><span class="tick"></span><h2>Education</h2></div>
+      <div>
+        <div class="list-row">
+          <div>
+            <div class="list-row-title">BRAC University</div>
+            <div class="list-row-sub">BSc in Electrical and Electronic Engineering</div>
+          </div>
+          <div class="list-row-date mono">2024 — 2028</div>
+        </div>
+        <div class="list-row">
+          <div>
+            <div class="list-row-title">Anandaniketan School</div>
+            <div class="list-row-sub">Edexcel IALs — 4 A's</div>
+          </div>
+          <div class="list-row-date mono">2023</div>
+        </div>
+        <div class="list-row">
+          <div>
+            <div class="list-row-title">Anandaniketan School</div>
+            <div class="list-row-sub">Edexcel IGCSEs — 8 A*'s</div>
+          </div>
+          <div class="list-row-date mono">2021</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="wrap">
+      <div class="section-head"><span class="tick"></span><h2>Skills</h2></div>
+      <div class="skill-grid">
+        <div class="skill-group">
+          <h3>Programming &amp; hardware</h3>
+          <ul>
+            <li>C++</li>
+            <li>Python</li>
+            <li>Arduino</li>
+            <li>ESP32</li>
+            <li>ROS 2</li>
+            <li>Microcontrollers</li>
+          </ul>
+        </div>
+        <div class="skill-group">
+          <h3>Design &amp; tools</h3>
+          <ul>
+            <li>Adobe Photoshop</li>
+            <li>Adobe Premiere Pro</li>
+            <li>Adobe Illustrator</li>
+          </ul>
+        </div>
+        <div class="skill-group">
+          <h3>Other</h3>
+          <ul>
+            <li>Budget management</li>
+          </ul>
+        </div>
+        <div class="skill-group">
+          <h3>Languages</h3>
+          <ul>
+            <li>English (C2, EF SET 76/100)</li>
+            <li>Bengali (native)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="awards">
+    <div class="wrap">
+      <div class="section-head"><span class="tick"></span><h2>Awards &amp; certifications</h2></div>
+      <div>
+        <div class="list-row">
+          <div>
+            <div class="list-row-title">IEEE Computer Society 80th Anniversary Member</div>
+          </div>
+        </div>
+        <div class="list-row">
+          <div>
+            <div class="list-row-title">EF SET English Certificate</div>
+            <div class="list-row-sub">C2 Proficient — 76/100</div>
+          </div>
+          <div class="list-row-date mono">Apr 2025</div>
+        </div>
+        <div class="list-row">
+          <div>
+            <div class="list-row-title">The Daily Star Award</div>
+            <div class="list-row-sub">For at least 3 A grades in IALs in one sitting</div>
+          </div>
+          <div class="list-row-date mono">Feb 2024</div>
+        </div>
+        <div class="list-row">
+          <div>
+            <div class="list-row-title">Pearson Edexcel High Achievers Award</div>
+            <div class="list-row-sub">For at least 4 A grades in IALs in one sitting</div>
+          </div>
+          <div class="list-row-date mono">Nov 2023</div>
+        </div>
+        <div class="list-row">
+          <div>
+            <div class="list-row-title">The Duke of Edinburgh's Award — Bronze</div>
+          </div>
+          <div class="list-row-date mono">May 2023</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <div class="section-head"><span class="tick"></span><h2>Contact</h2></div>
+      <p>Happy to talk robotics, embedded systems, or anything electrical.</p>
+      <div class="contact-links">
+        <a href="mailto:sannidhya.sadhya@computer.org">
+          <span>sannidhya.sadhya@computer.org</span>
+          <span class="arrow">→</span>
+        </a>
+        <a href="https://github.com/Sadhya555" target="_blank" rel="noopener">
+          <span>github.com/Sadhya555</span>
+          <span class="arrow">→</span>
+        </a>
+        <a href="https://linkedin.com/in/sannidhya-roy-sadhya" target="_blank" rel="noopener">
+          <span>linkedin.com/in/sannidhya-roy-sadhya</span>
+          <span class="arrow">→</span>
+        </a>
+      </div>
+      <a class="resume-btn" href="resume.pdf" target="_blank" rel="noopener">Download full resume (PDF)</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Built with plain HTML, CSS, and JavaScript. Hosted on GitHub Pages.</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('navToggle').addEventListener('click', function(){
+    document.getElementById('navLinks').classList.toggle('open');
+  });
+  document.querySelectorAll('.nav-links a').forEach(function(link){
+    link.addEventListener('click', function(){
+      document.getElementById('navLinks').classList.remove('open');
+    });
+  });
+</script>
+
+</body>
+</html>
