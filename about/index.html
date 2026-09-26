@@ -8,9 +8,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="stylesheet" href="../assets/css/style.css?v=2">
 </head>
 <body>
+<canvas id="bg-canvas" aria-hidden="true"></canvas>
 
 <header class="site-header">
   <div class="wrap">
@@ -30,12 +31,16 @@
 </header>
 
 <main>
-  <section class="reveal">
-    <div class="eyebrow">About</div>
-    <h1>A little more background</h1>
-    <p>I'm a 3rd-year Electrical and Electronic Engineering student at BRAC University in Dhaka, expected to graduate in 2028. My work outside coursework centers on embedded systems and robotics — designing circuits, writing firmware, and getting hardware to do something useful rather than just sit on a breadboard.</p>
-    <p>I'm part of my university's robotics team, where I work on the control and software side of the team's rover, built to compete at the University Rover Challenge (URC).</p>
-    <p>Beyond the rover, I'm particularly interested in biomedical engineering, bionics, prosthetics, and neuroengineering — the space where electronics and the body meet. Most of my independent projects, like the pulse oximeter under Projects, sit somewhere along that line between embedded systems and sensing the human body.</p>
+  <section>
+    <div class="stagger">
+      <div class="reveal">
+        <div class="eyebrow">About</div>
+        <h1>A little more background</h1>
+      </div>
+      <p class="reveal">I'm a 3rd-year Electrical and Electronic Engineering student at BRAC University in Dhaka, expected to graduate in 2028. My work outside coursework centers on embedded systems and robotics — designing circuits, writing firmware, and getting hardware to do something useful rather than just sit on a breadboard.</p>
+      <p class="reveal">I'm part of my university's robotics team, where I work on the control and software side of the team's rover, built to compete at the University Rover Challenge (URC).</p>
+      <p class="reveal">Beyond the rover, I'm particularly interested in biomedical engineering, bionics, prosthetics, and neuroengineering — the space where electronics and the body meet. Most of my independent projects, like the pulse oximeter under Projects, sit somewhere along that line between embedded systems and sensing the human body.</p>
+    </div>
   </section>
 </main>
 
@@ -51,6 +56,6 @@
   </div>
 </footer>
 
-<script src="../assets/js/main.js"></script>
+<script src="../assets/js/main.js?v=2"></script>
 </body>
 </html>

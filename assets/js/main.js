@@ -126,24 +126,25 @@ var REDUCE_MOTION = window.matchMedia("(prefers-reduced-motion: reduce)").matche
   requestAnimationFrame(step);
 })();
 
-// ---- Homepage hero parallax ------------------------------------------
-// The portrait frame drifts a few px toward the cursor position within
-// the hero block. No-op on every page except the homepage.
+// ---- Page fade transition ---------------------------------------------
+// Manual fade-out on internal-link click, then navigate; the fade-in on
+// the arriving page is handled purely by CSS (the page-in keyframe).
+// This works in every browser, unlike the experimental View Transitions API.
 (function () {
   if (REDUCE_MOTION) return;
-  var hero = document.querySelector(".hero");
-  if (!hero) return;
-  var portrait = hero.querySelector(".portrait");
-  if (!portrait) return;
-
-  hero.addEventListener("mousemove", function (e) {
-    var rect = hero.getBoundingClientRect();
-    var relX = (e.clientX - rect.left) / rect.width - 0.5;
-    var relY = (e.clientY - rect.top) / rect.height - 0.5;
-    portrait.style.transform = "translate(" + (relX * 12).toFixed(1) + "px, " + (relY * 12).toFixed(1) + "px)";
-  });
-  hero.addEventListener("mouseleave", function () {
-    portrait.style.transform = "";
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest("a");
+    if (!a) return;
+    if (a.target === "_blank" || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+    if (a.protocol !== "http:" && a.protocol !== "https:") return; // mailto:, tel:
+    if (a.origin !== window.location.origin) return; // external site
+    if (a.pathname.indexOf("/assets/") !== -1) return; // downloads (résumé PDF, etc.)
+    if (a.href === window.location.href) return; // link to the current page
+    e.preventDefault();
+    document.body.classList.add("is-leaving");
+    setTimeout(function () {
+      window.location.href = a.href;
+    }, 180);
   });
 })();
 

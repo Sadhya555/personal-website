@@ -8,9 +8,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="stylesheet" href="../assets/css/style.css?v=2">
 </head>
 <body>
+<canvas id="bg-canvas" aria-hidden="true"></canvas>
 
 <header class="site-header">
   <div class="wrap">
@@ -30,12 +31,14 @@
 </header>
 
 <main>
-  <section class="reveal">
-    <div class="eyebrow">Extracurriculars</div>
-    <h1>Extracurriculars</h1>
-    <p class="lede">Club and society involvement, at university and before it.</p>
+  <section>
+    <div class="reveal">
+      <div class="eyebrow">Extracurriculars</div>
+      <h1>Extracurriculars</h1>
+      <p class="lede">Club and society involvement, at university and before it.</p>
+    </div>
 
-    <div class="mt-lg">
+    <div class="mt-lg reveal">
       <h2 class="group-label">University</h2>
       <div class="entry-list">
         <div class="entry-row">
@@ -140,7 +143,7 @@
       </div>
     </div>
 
-    <div class="mt-lg">
+    <div class="mt-lg reveal">
       <h2 class="group-label">School</h2>
       <div class="entry-list">
         <div class="entry-row">
@@ -195,6 +198,6 @@
   </div>
 </footer>
 
-<script src="../assets/js/main.js"></script>
+<script src="../assets/js/main.js?v=2"></script>
 </body>
 </html>

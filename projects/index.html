@@ -8,9 +8,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="stylesheet" href="../assets/css/style.css?v=2">
 </head>
 <body>
+<canvas id="bg-canvas" aria-hidden="true"></canvas>
 
 <header class="site-header">
   <div class="wrap">
@@ -30,12 +31,14 @@
 </header>
 
 <main>
-  <section class="reveal">
-    <div class="eyebrow">Projects</div>
-    <h1>Independent projects</h1>
-    <p class="lede">Hardware and firmware I've built on my own time, outside coursework and team projects.</p>
+  <section>
+    <div class="reveal">
+      <div class="eyebrow">Projects</div>
+      <h1>Independent projects</h1>
+      <p class="lede">Hardware and firmware I've built on my own time, outside coursework and team projects.</p>
+    </div>
 
-    <div class="card mt-lg">
+    <div class="card mt-lg reveal">
       <div class="card-head">
         <h3>ESP32 Pulse Oximeter &amp; Heart Rate Monitor</h3>
         <span class="status">working build</span>
@@ -54,7 +57,7 @@
       </p>
     </div>
 
-    <div class="placeholder-card mt-lg">
+    <div class="placeholder-card mt-lg reveal">
       More projects coming soon.
     </div>
   </section>
@@ -72,6 +75,6 @@
   </div>
 </footer>
 
-<script src="../assets/js/main.js"></script>
+<script src="../assets/js/main.js?v=2"></script>
 </body>
 </html>
