@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Projects — Sannidhya Roy Sadhya</title>
+<meta name="description" content="Independent embedded systems projects, including an ESP32 pulse oximeter and heart rate monitor.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/">Sannidhya Roy Sadhya</a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="/">Home</a>
+      <a href="/about/">About</a>
+      <a href="/experience/">Experience</a>
+      <a href="/projects/" aria-current="page">Projects</a>
+      <a href="/extracurriculars/">Extracurriculars</a>
+      <a href="/education/">Education</a>
+      <a href="/awards/">Awards</a>
+      <a href="/skills/">Skills</a>
+      <a href="/contact/">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="reveal">
+    <div class="eyebrow">Projects</div>
+    <h1>Independent projects</h1>
+    <p class="lede">Hardware and firmware I've built on my own time, outside coursework and team projects.</p>
+
+    <div class="card mt-lg">
+      <div class="card-head">
+        <h3>ESP32 Pulse Oximeter &amp; Heart Rate Monitor</h3>
+        <span class="status">working build</span>
+      </div>
+      <p>An electronics project that measures SpO2 (blood oxygen) and heart rate using an ESP32, a MAX30102 optical sensor, and a small OLED display. It uses digital signal processing to separate the AC and DC components of the sensor's optical signal, which is what makes the SpO2 and heart-rate readings meaningfully accurate rather than just raw sensor noise. This is a hobby electronics build, not a medically rated device.</p>
+      <dl class="specs">
+        <dt>Hardware</dt>
+        <dd>ESP32 dev board, MAX30102 pulse oximetry sensor, 0.96&Prime; SSD1306 OLED (I2C), 2&times; 4.7k&Omega; pull-up resistors</dd>
+        <dt>Software</dt>
+        <dd>PlatformIO / Arduino framework, Adafruit GFX &amp; SSD1306 libraries, SparkFun MAX3010x sensor library</dd>
+        <dt>Status</dt>
+        <dd>Hardware built and wired; a browser-based dashboard mirroring the OLED display is planned as a future addition</dd>
+      </dl>
+      <p class="mt-lg" style="margin-top:1.25rem;">
+        <a href="https://github.com/Sadhya555/ESP32-Oximeter-Heartrate">View on GitHub</a>
+      </p>
+    </div>
+
+    <div class="placeholder-card mt-lg">
+      More projects coming soon.
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span>&copy; 2026 Sannidhya Roy Sadhya</span>
+    <div class="footer-links">
+      <a href="https://github.com/Sadhya555">GitHub</a>
+      <a href="https://www.linkedin.com/in/sannidhya-roy-sadhya">LinkedIn</a>
+      <a href="/contact/">Contact</a>
+      <a href="/assets/Sannidhya_Roy_Sadhya_Resume.pdf">Resume</a>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/js/main.js"></script>
+</body>
+</html>
