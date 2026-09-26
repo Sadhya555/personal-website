@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+<canvas id="bg-canvas" aria-hidden="true"></canvas>
 
 <header class="site-header">
   <div class="wrap">
@@ -41,21 +42,23 @@
         <a href="assets/Sannidhya_Roy_Sadhya_Resume.pdf">View Resume</a>
       </div>
     </div>
-    <div class="portrait">
-      <img src="assets/img/profile.jpg" alt="" onerror="this.replaceWith(this.nextElementSibling)">
-      <span style="display:none">Add /assets/img/profile.jpg</span>
+    <div class="portrait-wrap">
+      <div class="portrait">
+        <img src="assets/img/profile.jpg" alt="" onerror="this.replaceWith(this.nextElementSibling)">
+        <span style="display:none">Add /assets/img/profile.jpg</span>
+      </div>
     </div>
   </div>
 
-  <nav class="tiles reveal" aria-label="Site sections">
-    <a class="tile" href="about/"><h3>About</h3><p>Academic background and interests</p></a>
-    <a class="tile" href="experience/"><h3>Experience</h3><p>Rover team software work</p></a>
-    <a class="tile" href="projects/"><h3>Projects</h3><p>ESP32 pulse oximeter, more soon</p></a>
-    <a class="tile" href="extracurriculars/"><h3>Extracurriculars</h3><p>University &amp; school involvement</p></a>
-    <a class="tile" href="education/"><h3>Education</h3><p>BRAC University &amp; prior schooling</p></a>
-    <a class="tile" href="awards/"><h3>Awards</h3><p>Certifications and honors</p></a>
-    <a class="tile" href="skills/"><h3>Skills</h3><p>Languages, tools, software</p></a>
-    <a class="tile" href="contact/"><h3>Contact</h3><p>Email, LinkedIn, GitHub</p></a>
+  <nav class="tiles" aria-label="Site sections">
+    <a class="tile reveal" href="about/"><h3>About</h3><p>Academic background and interests</p></a>
+    <a class="tile reveal" href="experience/"><h3>Experience</h3><p>Rover team software work</p></a>
+    <a class="tile reveal" href="projects/"><h3>Projects</h3><p>ESP32 pulse oximeter, more soon</p></a>
+    <a class="tile reveal" href="extracurriculars/"><h3>Extracurriculars</h3><p>University &amp; school involvement</p></a>
+    <a class="tile reveal" href="education/"><h3>Education</h3><p>BRAC University &amp; prior schooling</p></a>
+    <a class="tile reveal" href="awards/"><h3>Awards</h3><p>Certifications and honors</p></a>
+    <a class="tile reveal" href="skills/"><h3>Skills</h3><p>Languages, tools, software</p></a>
+    <a class="tile reveal" href="contact/"><h3>Contact</h3><p>Email, LinkedIn, GitHub</p></a>
   </nav>
 </main>
 
