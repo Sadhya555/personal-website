@@ -15,11 +15,12 @@ Google Fonts (Inter + JetBrains Mono).
 /awards/index.html
 /skills/index.html
 /contact/index.html
-/assets/css/style.css   all styling
-/assets/js/main.js      scroll-reveal + accordion (progressive enhancement)
-/assets/img/profile.jpg your photo (add this — see assets/img/README.md)
-/assets/Sannidhya_Roy_Sadhya_Resume.pdf   your resume (add this)
+/assets/css/style.css
+/assets/js/main.js
+/assets/img/profile.jpg
+/assets/Sannidhya_Roy_Sadhya_Resume.pdf
 ```
+
 
 ## Local preview
 
