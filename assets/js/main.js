@@ -28,25 +28,23 @@ var REDUCE_MOTION = window.matchMedia("(prefers-reduced-motion: reduce)").matche
 })();
 
 // ---- Background node network ----------------------------------------
-// A sparse, slow-drifting graph rather than a gradient — nodes gently
+// A sparse, slow-drifting graph rather than a gradient; nodes gently
 // yield away from the cursor. Skipped entirely under reduced motion.
+// The canvas box is sized by CSS (100% of the viewport). JS only reads that
+// box to set the drawing resolution, so it can never feed back into layout.
 (function () {
   var canvas = document.getElementById("bg-canvas");
   if (!canvas) return;
   if (REDUCE_MOTION) { canvas.remove(); return; }
 
   var ctx = canvas.getContext("2d");
-  var w, h, dpr, points;
+  var w = 0, h = 0, dpr = 1, points = [];
+  var lastCssW = 0;
   var mouse = { x: null, y: null };
-  var visible = true;
+  var raf = 0;
 
-  function resize() {
-    dpr = Math.min(window.devicePixelRatio || 1, 2);
-    w = canvas.width = Math.floor(window.innerWidth * dpr);
-    h = canvas.height = Math.floor(window.innerHeight * dpr);
-    canvas.style.width = window.innerWidth + "px";
-    canvas.style.height = window.innerHeight + "px";
-    var count = Math.min(70, Math.floor((window.innerWidth * window.innerHeight) / 24000));
+  function seed(cssW, cssH) {
+    var count = Math.max(18, Math.min(70, Math.floor((cssW * cssH) / 20000)));
     points = [];
     for (var i = 0; i < count; i++) {
       points.push({
@@ -58,8 +56,28 @@ var REDUCE_MOTION = window.matchMedia("(prefers-reduced-motion: reduce)").matche
     }
   }
 
+  function resize() {
+    var cssW = canvas.clientWidth;
+    var cssH = canvas.clientHeight;
+    if (!cssW || !cssH) return;
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    w = canvas.width = Math.floor(cssW * dpr);
+    h = canvas.height = Math.floor(cssH * dpr);
+    // Phones fire resize when the URL bar shows/hides (height only). Keep the
+    // existing nodes in that case instead of re-randomising them mid-scroll.
+    if (cssW !== lastCssW || !points.length) {
+      seed(cssW, cssH);
+    } else {
+      points.forEach(function (p) {
+        if (p.x > w) p.x = w;
+        if (p.y > h) p.y = h;
+      });
+    }
+    lastCssW = cssW;
+  }
+
   function step() {
-    if (!visible) return;
+    raf = requestAnimationFrame(step);
     ctx.clearRect(0, 0, w, h);
     var linkDist = 130 * dpr;
     var pullDist = 150 * dpr;
@@ -83,29 +101,32 @@ var REDUCE_MOTION = window.matchMedia("(prefers-reduced-motion: reduce)").matche
       }
     }
 
-    for (var i = 0; i < points.length; i++) {
-      for (var j = i + 1; j < points.length; j++) {
-        var a = points[i], b = points[j];
-        var dx = a.x - b.x, dy = a.y - b.y;
-        var dist = Math.sqrt(dx * dx + dy * dy);
+    for (var a = 0; a < points.length; a++) {
+      for (var b = a + 1; b < points.length; b++) {
+        var pa = points[a], pb = points[b];
+        var ddx = pa.x - pb.x, ddy = pa.y - pb.y;
+        var dist = Math.sqrt(ddx * ddx + ddy * ddy);
         if (dist < linkDist) {
           ctx.strokeStyle = "rgba(79, 209, 197, " + (0.16 * (1 - dist / linkDist)) + ")";
           ctx.lineWidth = dpr;
           ctx.beginPath();
-          ctx.moveTo(a.x, a.y);
-          ctx.lineTo(b.x, b.y);
+          ctx.moveTo(pa.x, pa.y);
+          ctx.lineTo(pb.x, pb.y);
           ctx.stroke();
         }
       }
     }
-    for (var i = 0; i < points.length; i++) {
+    for (var k = 0; k < points.length; k++) {
       ctx.fillStyle = "rgba(138, 147, 160, 0.55)";
       ctx.beginPath();
-      ctx.arc(points[i].x, points[i].y, 1.6 * dpr, 0, Math.PI * 2);
+      ctx.arc(points[k].x, points[k].y, 1.6 * dpr, 0, Math.PI * 2);
       ctx.fill();
     }
+  }
 
-    requestAnimationFrame(step);
+  function start() {
+    cancelAnimationFrame(raf); // never run two loops at once
+    raf = requestAnimationFrame(step);
   }
 
   window.addEventListener("resize", resize);
@@ -118,12 +139,12 @@ var REDUCE_MOTION = window.matchMedia("(prefers-reduced-motion: reduce)").matche
     mouse.y = null;
   });
   document.addEventListener("visibilitychange", function () {
-    visible = !document.hidden;
-    if (visible) requestAnimationFrame(step);
+    if (document.hidden) cancelAnimationFrame(raf);
+    else start();
   });
 
   resize();
-  requestAnimationFrame(step);
+  start();
 })();
 
 // ---- Page fade transition ---------------------------------------------
@@ -165,6 +186,13 @@ var REDUCE_MOTION = window.matchMedia("(prefers-reduced-motion: reduce)").matche
         panel.classList.add("is-open");
         panel.style.maxHeight = panel.scrollHeight + "px";
       }
+    });
+  });
+  // The open height is a fixed pixel value; re-measure if the layout reflows
+  // (phone rotated, window resized) so nothing gets clipped.
+  window.addEventListener("resize", function () {
+    document.querySelectorAll(".accordion-panel.is-open").forEach(function (p) {
+      p.style.maxHeight = p.scrollHeight + "px";
     });
   });
 })();
